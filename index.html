@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit&display=swap" rel="stylesheet">
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon-32x32.png">
+  <link href="style.css" rel="stylesheet">
+  
+  <title>Tic Tac Toe</title>
+</head>
+<body>
+  <main>
+        <div class="game_area">
+      <div class="item">
+        <img src="./assets/logo.svg"/>
+      </div>
+      <div class="item">
+        <div class="flex_item">
+          PICK PLAYER 1'S MARK
+        </div>
+        <div class="flex_item">
+          <button class="xoro" id="xoro_x">
+            <img src="./assets/icon-x(silver).svg" id="x_silver"/>
+            <img src="./assets/icon-x_navyBlue.svg" id="x_blue" style="display: none;"/>
+          </button><button class="xoro" id="xoro_o">
+            <img src="./assets/icon-o(grey).svg" id="o_blue"/>
+            <img src="./assets/icon-o(silver).svg" id="o_silver" style="display: none;"/>
+          </button>
+        </div>
+        <div class="flex_item" style="opacity: 0.5;">
+          REMEMBER: X GOES FIRST
+        </div>
+      </div>
+      <div class="item">
+        <button id="button_yellow" >
+          New Game (vs CPU)
+        </button>
+        <button id="button_green"  onclick="location.href = 'start_game.html'">
+          New Game (vs player)
+        </button>
+      </div>
+
+    </div>
+  </main>
+  <script>
+  var p1 = localStorage.setItem('player_one','O');
+  var player_two = 'X';
+  var element = document.getElementById("xoro_x");
+  var elementO = document.getElementById("xoro_o");
+  var x_silver = document.getElementById('x_silver');
+  var x_blue = document.getElementById('x_blue');
+  var o_blue = document.getElementById('o_blue');
+  var o_silver = document.getElementById('o_silver');
+  var button_yellow = document.getElementById('button_yellow');
+  var button_green = document.getElementById('button_green');
+  
+   //homepage functions
+  element.onclick = function(){
+   element.style.background = "#A8BFC9";
+   elementO.style.background = "none";
+   x_blue.style.display = '';
+   x_silver.style.display = 'none';
+   o_blue.style.display = 'none';
+   o_silver.style.display = '';
+  //  player_one = 'X';
+   localStorage.setItem('player_one','X');
+   elementO.onmouseover=function(){
+     elementO.style.background='#9797970e';
+   }
+   elementO.onmouseout=function(){
+     elementO.style.background='none';
+   }
+   element.onmouseover = function(){
+    element.style.background = "#A8BFC9";
+   }
+   element.onmouseout= function(){
+    element.style.background = "#A8BFC9";
+   }
+  }
+  elementO.onclick = function(){
+   elementO.style.background = "#A8BFC9";
+   element.style.background = "none";
+   o_blue.style.display = '';
+   o_silver.style.display = 'none';
+   x_blue.style.display = 'none';
+   x_silver.style.display = '';
+  //  player_one = 'O';
+   localStorage.setItem('player_one','O');
+   elementO.onmouseover=function(){
+     elementO.style.background='';
+   }
+   elementO.onmouseout=function(){
+     elementO.style.background='';
+   }
+   element.onmouseover=function(){
+     element.style.background='#9797970e';
+   }
+   element.onmouseout=function(){
+     element.style.background='';
+   }
+  }
+  button_yellow.onclick = ()=>{
+   location.href = 'start_game.html';
+   p1 = localStorage.getItem('player_one');
+   switch(p1){
+     case 'X': player_two = 'CPU_O';
+     localStorage.setItem('player_two','CPU_O');
+     break;
+     case 'O': player_two = 'CPU_X';
+     localStorage.setItem('player_two','CPU_X');
+     break;
+     default: console.log('error assigning tags to players');
+   }
+   var p2 = localStorage.getItem('player_two');
+   console.log(p2);
+  }
+  button_green.onclick = ()=>{
+   location.href = 'p1vsp2.html';
+   p1 = localStorage.getItem('player_one');
+   switch(p1){
+     case 'X': player_two = 'PLAYER_TWO_O';
+     localStorage.setItem('player_two','PLAYER_TWO_O');
+     break;
+     case 'O': player_two = 'PLAYER_TWO_X';
+     localStorage.setItem('player_two','PLAYER_TWO_X');
+     break;
+     default: console.log('error assigning tags to players');
+   }
+   console.log(player_two);
+  }
+  </script>
+
+</body>
+
+</html>
